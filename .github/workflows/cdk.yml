@@ -1,0 +1,26 @@
+name: cdk
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: List
+        run: ls -lR
+
+      - name: cdk synth
+        uses: youyo/aws-cdk-github-actions@v1
+        with:
+          cdk_subcommand: 'synth'
+          actions_comment: true
+          working_dir: 'infra'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
