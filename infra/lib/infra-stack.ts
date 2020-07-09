@@ -25,7 +25,7 @@ export class InfraStack extends cdk.Stack {
       hostedZone
     });
 
-    const cloudfrontDistributio = new cloudfront.CloudFrontWebDistribution(this, "CloudFront", {
+    const cloudfrontDistribution = new cloudfront.CloudFrontWebDistribution(this, "CloudFront", {
       originConfigs: [
         {
           s3OriginSource: {
@@ -38,6 +38,10 @@ export class InfraStack extends cdk.Stack {
           ]
         }
       ]
+    });
+
+    const output = new cdk.CfnOutput(this, "S3BucketOutput", {
+      value: websiteBucket.bucketName
     });
   }
 }

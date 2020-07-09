@@ -7,6 +7,7 @@ import { Tag } from '@aws-cdk/core';
 
 const app = new cdk.App();
 const stack = new InfraStack(app, 'InfraStack', {
+    stackName: 'DMBlog',
     env: {
         'account': process.env.AWS_ACCOUNT_ID,
         'region': process.env.AWS_DEFAULT_REGION
