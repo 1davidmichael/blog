@@ -30,8 +30,8 @@ export class InfraStack extends cdk.Stack {
     const cloudfrontDistribution = new cloudfront.CloudFrontWebDistribution(this, "CloudFront", {
       originConfigs: [
         {
-          s3OriginSource: {
-            s3BucketSource: websiteBucket,
+          customOriginSource: {
+            domainName: websiteBucket.bucketWebsiteDomainName
           },
           behaviors: [
             {
