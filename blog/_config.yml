@@ -113,6 +113,14 @@ theme_config:
     gravatar: true
   gravatar:
     email: 1.david.michael@gmail.com
+  highlight: monokai
+  favicon:
+    desktop:
+      gravatar: true
+    android:
+      gravatar: true
+    apple:
+      gravatar: true
 
 
 # Deployment

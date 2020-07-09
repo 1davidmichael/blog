@@ -39,7 +39,11 @@ export class InfraStack extends cdk.Stack {
             }
           ]
         }
-      ]
+      ],
+      aliasConfiguration: {
+        acmCertRef: certificate.certificateArn,
+        names: ['blog.dmichael.be']
+      }
     });
 
     const dnsRecord = new route53.ARecord(this, "Route53Record", {
