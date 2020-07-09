@@ -3,6 +3,7 @@ import * as s3 from '@aws-cdk/aws-s3';
 import * as cloudfront from '@aws-cdk/aws-cloudfront';
 import * as certmanager from '@aws-cdk/aws-certificatemanager';
 import * as route53 from '@aws-cdk/aws-route53';
+import * as targets from '@aws-cdk/aws-route53-targets';
 
 
 export class InfraStack extends cdk.Stack {
@@ -38,6 +39,12 @@ export class InfraStack extends cdk.Stack {
           ]
         }
       ]
+    });
+
+    const dnsRecord = new route53.ARecord(this, "Route53Record", {
+      zone: hostedZone,
+      recordName: "blog.dmichael.be",
+      target: route53.RecordTarget.fromAlias(new targets.CloudFrontTarget(cloudfrontDistribution))
     });
 
     const output = new cdk.CfnOutput(this, "S3BucketOutput", {
