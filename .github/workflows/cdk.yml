@@ -25,3 +25,9 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
           AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+      - name: Build Hexo Site
+        uses: actions/setup-node@v1
+      - run: npm install -g hexo-cli
+      - run: cd blog && npm install
+      - run: cd blog && hexo generate
+      - run: cd blog/public && aws s3 sync --acl public-read . s3://david-michael-blog-bucket
