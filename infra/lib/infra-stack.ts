@@ -16,6 +16,7 @@ export class InfraStack extends cdk.Stack {
     });
 
     const websiteBucket = new s3.Bucket(this, "static-website-bucket", {
+      bucketName: "david-michael-blog-bucket",
       publicReadAccess: true,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       websiteIndexDocument: "index.html"
