@@ -21,10 +21,9 @@ jobs:
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: cdk deploy
-        uses: 1davidmichael/aws-cdk-github-actions@fix_args
+        uses: youyo/aws-cdk-github-actions@v1
         with:
-          cdk_subcommand: 'deploy'
-          cdk_args: '--require-approval never'
+          cdk_subcommand: 'deploy --require-approval never'
           working_dir: 'infra'
           actions_comment: false
         env:
