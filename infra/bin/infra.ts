@@ -2,8 +2,11 @@
 import 'source-map-support/register';
 import * as cdk from '@aws-cdk/core';
 import { InfraStack } from '../lib/infra-stack';
-import { countReset } from 'console';
 import { Tag } from '@aws-cdk/core';
+
+import { config } from "dotenv";
+
+config();
 
 const app = new cdk.App();
 const stack = new InfraStack(app, 'InfraStack', {

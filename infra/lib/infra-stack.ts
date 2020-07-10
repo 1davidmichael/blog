@@ -9,20 +9,32 @@ export class InfraStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
+    const uploadBuckeName = new cdk.CfnParameter(this, "BucketName", {
+      type: "String",
+      description: "The name of the bucket to be used",
+      default: "david-michael-blog-bucket"
+    });
+
+    const subdomain = new cdk.CfnParameter(this, "Subdomain", {
+      type: "String",
+      description: "The name of the subdomain to be used",
+      default: 'blog'
+    });
+
     const hostedZone = route53.HostedZone.fromLookup(this, "HostedZone", {
       domainName: 'dmichael.be',
       privateZone: false
     });
 
     const websiteBucket = new s3.Bucket(this, "static-website-bucket", {
-      bucketName: "david-michael-blog-bucket",
+      bucketName: uploadBuckeName.valueAsString,
       publicReadAccess: true,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       websiteIndexDocument: "index.html"
     });
 
     const certificate = new certmanager.DnsValidatedCertificate(this, "Certificate", {
-      domainName: 'blog.dmichael.be',
+      domainName: `${subdomain.valueAsString}.dmichael.be`,
       hostedZone
     });
 
@@ -42,13 +54,13 @@ export class InfraStack extends cdk.Stack {
       ],
       aliasConfiguration: {
         acmCertRef: certificate.certificateArn,
-        names: ['blog.dmichael.be']
+        names: [`${subdomain.valueAsString}.dmichael.be`]
       }
     });
 
     const dnsRecord = new route53.ARecord(this, "Route53Record", {
       zone: hostedZone,
-      recordName: "blog.dmichael.be",
+      recordName: `${subdomain.valueAsString}.dmichael.be`,
       target: route53.RecordTarget.fromAlias(new targets.CloudFrontTarget(cloudfrontDistribution))
     });
 
