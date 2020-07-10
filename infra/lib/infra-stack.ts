@@ -5,7 +5,6 @@ import * as certmanager from '@aws-cdk/aws-certificatemanager';
 import * as route53 from '@aws-cdk/aws-route53';
 import * as targets from '@aws-cdk/aws-route53-targets';
 
-
 export class InfraStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
@@ -31,7 +30,8 @@ export class InfraStack extends cdk.Stack {
       originConfigs: [
         {
           customOriginSource: {
-            domainName: websiteBucket.bucketWebsiteDomainName
+            domainName: websiteBucket.bucketWebsiteDomainName,
+            originProtocolPolicy: cloudfront.OriginProtocolPolicy.HTTP_ONLY
           },
           behaviors: [
             {
