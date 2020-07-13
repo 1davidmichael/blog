@@ -33,4 +33,4 @@ jobs:
       - run: npm install -g hexo-cli
       - run: cd blog && npm install
       - run: cd blog && hexo generate
-      - run: cd blog/public && aws s3 sync --acl public-read . s3://david-michael-blog-bucket
+      - run: cd blog/public && aws s3 sync --delete --acl public-read . s3://david-michael-blog-bucket
