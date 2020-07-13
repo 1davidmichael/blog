@@ -47,7 +47,9 @@ export class InfraStack extends cdk.Stack {
           },
           behaviors: [
             {
-              isDefaultBehavior: true
+              isDefaultBehavior: true,
+              defaultTtl: cdk.Duration.minutes(5),
+              maxTtl: cdk.Duration.minutes(5)
             }
           ]
         }
