@@ -1,5 +1,7 @@
 ---
 title: Automated Blog via CDK
+date: 2020-07-09 21:46:51
+
 ---
 This blog's infrastructure is deployed to AWS via the [CDK]. It is automatically created and deployed via [GitHub Actions]. I hope to provide more details on
 how this was done at a later date.
