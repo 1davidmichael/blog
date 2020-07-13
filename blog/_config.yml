@@ -121,6 +121,10 @@ theme_config:
       gravatar: true
     apple:
       gravatar: true
+    post_overview:
+      show_all_posts: false
+      post_count: 10
+      sort_updated: true
 
 
 # Deployment
