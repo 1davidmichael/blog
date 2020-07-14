@@ -40,4 +40,18 @@ Tag.add(stack, "Environment", "Prod");
 
 I then also use the [dotenv](https://www.npmjs.com/package/dotenv) nodejs package to pull those environment variables from a file locally for development purposes.
 
+This step then works as expected and pulls in the HostedZoneId to be used later
+
+{% codeblock lang:javascript %}
+    const hostedZone = route53.HostedZone.fromLookup(this, "HostedZone", {
+      domainName: 'dmichael.be',
+      privateZone: false
+    });
+
+    const certificate = new certmanager.DnsValidatedCertificate(this, "Certificate", {
+      domainName: `${subdomain.valueAsString}.dmichael.be`,
+      hostedZone
+    });
+{% endcodeblock %}
+
 Longer term it might be possible to look these up dynamically via the [AWS SDK for JavaScript](https://aws.amazon.com/sdk-for-node-js/) and not need to include them at all. But for not this works. There are also CDK environment variables that could be used directly, `CDK_DEFAULT_ACCOUNT` and `CDK_DEFAULT_REGION`.
