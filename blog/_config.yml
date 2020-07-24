@@ -125,6 +125,9 @@ theme_config:
       show_all_posts: false
       post_count: 10
       sort_updated: true
+  google_analytics:
+    enabled: true
+    id: UA-173473397-1
 
 
 # Deployment
