@@ -12,8 +12,9 @@ const app = new cdk.App();
 const stack = new InfraStack(app, 'InfraStack', {
     stackName: 'DMBlog',
     env: {
-        'account': process.env.AWS_ACCOUNT_ID,
-        'region': process.env.AWS_DEFAULT_REGION
+        // https://docs.aws.amazon.com/cdk/latest/guide/environments.html
+        account: process.env.CDK_DEPLOY_ACCOUNT || process.env.CDK_DEFAULT_ACCOUNT,
+        region: process.env.CDK_DEPLOY_REGION || process.env.CDK_DEFAULT_REGION
     }
 });
 

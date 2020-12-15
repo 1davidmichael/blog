@@ -9,9 +9,3 @@ cdk.out
 
 # Parcel default cache directory
 .parcel-cache
-
-cdk.context.json
-
-# File with AWS account details
-.env
-cdk.context.json

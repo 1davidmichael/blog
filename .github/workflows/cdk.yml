@@ -30,6 +30,7 @@ jobs:
           AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
       - name: Build Hexo Site
         uses: actions/setup-node@v1
+
       - run: npm install -g hexo-cli
       - run: cd blog && npm install
       - run: cd blog && hexo generate
