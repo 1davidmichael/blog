@@ -38,6 +38,8 @@ export class InfraStack extends cdk.Stack {
       hostedZone
     });
 
+    const logBucket = new s3.Bucket(this, "LogBucket");
+
     const cloudfrontDistribution = new cloudfront.CloudFrontWebDistribution(this, "CloudFront", {
       originConfigs: [
         {
@@ -57,6 +59,9 @@ export class InfraStack extends cdk.Stack {
       aliasConfiguration: {
         acmCertRef: certificate.certificateArn,
         names: [`${subdomain.valueAsString}.dmichael.be`]
+      },
+      loggingConfig: {
+        bucket: logBucket
       }
     });
 
