@@ -122,7 +122,7 @@ theme_config:
     apple:
       gravatar: true
     post_overview:
-      show_all_posts: false
+      show_all_posts: true
       post_count: 10
       sort_updated: true
   google_analytics:
