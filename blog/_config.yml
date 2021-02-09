@@ -100,6 +100,8 @@ theme_config:
     github: http://github.com/1davidmichael
     twitter: https://twitter.com/d_michael
     mail: mailto:1.david.michael@gmail.com
+  posts_overview:
+    show_all_posts: true
   copyright:
     start_year: 2020
   nav:
