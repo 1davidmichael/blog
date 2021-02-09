@@ -115,7 +115,7 @@ theme_config:
     gravatar: true
   gravatar:
     email: 1.david.michael@gmail.com
-  highlight: monokai
+  highlight: solarized-dark
   favicon:
     desktop:
       gravatar: true
