@@ -108,7 +108,6 @@ theme_config:
     home: /
     about: /about/
     articles: /archives/
-    search: /search/
   logo:
     enabled: true
     width: 50
