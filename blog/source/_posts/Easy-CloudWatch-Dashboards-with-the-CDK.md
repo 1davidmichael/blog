@@ -8,9 +8,9 @@ tags:
 - cloudwatch
 ---
 
-If you have ever worked in an enterprise you know that one thing tech managers love dashboards. I don't blame them, they are great way to provide a good look into how a service or platform is performing. Unfortunately, CloudWatch Dashboards kinda suck to automate with CloudFormation.
+If you have ever worked in an enterprise you know that one thing tech managers love is dashboards. I don't blame them, they are great way to provide a good look into how a service or platform is performing. Unfortunately, CloudWatch Dashboards kinda suck to automate with CloudFormation.
 
-The [AWS::CloudWatch::Dashboard](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-dashboard.html) just takes a property of `DashboardBody`. It takes a JSON formatted string and any resources in there have to be subbed/joined in. It isn't pretty. For an example take a look a the the aws-efs-tutorial sample [here](https://github.com/aws-samples/amazon-efs-tutorial/blob/master/create-file-system/templates/efs-dashboard-with-size-monitor-and-burst-credit-balance-alarms.yml#L199-L216).
+The [AWS::CloudWatch::Dashboard](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-dashboard.html) just has a property of `DashboardBody`. It takes a JSON formatted string and any resources in there have to be subbed/joined in. It isn't pretty. For an example take a look at the aws-efs-tutorial sample [here](https://github.com/aws-samples/amazon-efs-tutorial/blob/master/create-file-system/templates/efs-dashboard-with-size-monitor-and-burst-credit-balance-alarms.yml#L199-L216).
 
 ```yaml
 EfsDashboardRetain:
@@ -69,7 +69,7 @@ cw.Dashboard(
 )
 ```
 
-As you can see here, most L2 resources expose a `.metric_*()` that can be used for creating the widgets. This will create a dashboard showing load balancer and ECS metrics over time and is much easier to manage.
+As you can see here, most L2 resources expose a `.metric_*()` that can be used for creating the widgets, then those widgets can be added to dashboards in a defined 3 dimensional array. This will create a dashboard showing load balancer and ECS metrics over time and is much easier to manage.
 
 {% asset_img dashboard.png dashboard %}
 
@@ -106,4 +106,4 @@ The database isn't very busy _yet_ but it ends up with a nice red line that will
 
 {% asset_img annotation.png annotation %}
 
-Dashboards defined with CDK are much easier to write then regular CloudFormatation. This will result in them being used more and will result in more consistent dashboards when the same code is used for all environments. No more hand made/inconsistent dashboards.
+Dashboards defined with CDK are much easier to write then regular CloudFormation. This will result in them being used more and will result in more consistent dashboards when the same code is used for all environments. No more hand made/inconsistent dashboards.
