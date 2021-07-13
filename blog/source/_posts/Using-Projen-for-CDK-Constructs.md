@@ -97,6 +97,43 @@ Once those are added any PR to the project will result in a build and test be co
 
 Another added benefit is a `API.md` file is generated with references for the Constructs created. [Here is an example.](https://github.com/1davidmichael/Cloudwatch-Alarms-to-Chat-Platforms/blob/main/API.md)
 
+An interesting problem I ran into when using the [PythonFunction](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-lambda-python-readme.html) with GitHub Actions is the construct uses Docker under the hood to install dependencies. This caused issues because Docker was unable to be called within the Action. The solution is to use the L2 Construct [SingletonFunction](https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-lambda.SingletonFunction.html) and the local bundle option. This is well described in this [AWS blog post](https://aws.amazon.com/blogs/devops/building-apps-with-aws-cdk/).
+
+Here is an example of how it was done in TypeScript CDK with a Python Lambda:
+
+```typescript
+this.lambdaFunction = new lambda.SingletonFunction(this, 'TransformFunction', {
+  code: lambda.Code.fromAsset(path.join(__dirname, '..', 'src', 'functions', 'teamsLambda'), {
+    bundling: {
+      image: lambda.Runtime.PYTHON_3_8.bundlingImage,
+      local: {
+        tryBundle(outputDir: string) {
+          try {
+            execSync('pip3 --version', execOptions);
+          } catch {
+            return false;
+          }
+          execSync(`pip3 install -r ${path.join(__dirname, '..', 'src', 'functions', 'teamsLambda', 'requirements.txt')} -t ${outputDir}`);
+          execSync(`cp -au ${path.join(__dirname, '..', 'src', 'functions', 'teamsLambda')} ${outputDir}`);
+
+          return true;
+        },
+      },
+      command: [
+        'bash', '-c',
+        'pip install -r requirements.txt -t /asset-output && cp -au . /asset-output',
+      ],
+    },
+  }),
+  uuid: 'b1475680-a6b6-4c58-9fb8-19ffd4325f45',
+  handler: 'index.handler',
+  runtime: Runtime.PYTHON_3_8,
+  environment: { WEBHOOK: props.webhookUrl },
+});
+```
+
+One other thing to call out here, the use of `SingletonFunction`, this way the lambda will be created only once, only if the Construct is actually used multiple times in a given stack.
+
 ## My first multi-language construct
 
 All of this was discovered when writing and creating my first open source CDK construct: <https://github.com/1davidmichael/Cloudwatch-Alarms-to-Chat-Platforms>
