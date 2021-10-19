@@ -44,6 +44,15 @@ AWS's alternative is fundamentally two different services, [CodeBuild] and [Code
 
 [CodeBuild] fundamentally works the same way as [GitHub Actions], just with more setup. A developer has to link a repo, either in CodeCommit, GitHub or BitBucket Cloud, to it. Then a `buildspec.yml` file can be added to the repo and configured when to build. The results can then be passed off to [CodePipeline] to deploy to different environments. CodePipeline works well because it can be configured to use multiple roles to deploy to multiple AWS accounts. Using something like [CDK Pipelines] you can even configure it to be self-mutable, but the issue is it still requires setup that adds to the time it takes to get code shipped. There are not many pre-configured CodeBuild steps, so you might likely be reconfiguring the same steps over and over again unless you introduce your own automation. Once again, it all works, but GitHub's solutions are easier.
 
+## Bonus GitHub features
+
+{% asset_img image4.png GitHub PR Review %}
+
+
+One new thing I very recently became aware of that is an excellent feature of GitHub is its integration with Visual Studio Code. For example, going to a Pull Request, and then typing `.` will open the PR in a full web version of VS Code. This is a great way to better review code and really show the changes in their full form. Quality of life things like this are why I really like GitHub.
+
+
+
 ## Conclusion
 
 Overall, both tools work and work well. The fundamental difference is community support and ease of use. Both of which I think [GitHub] wins, hands down. While it is certainly the more expensive of the two, I could argue that the increased productivity and reduced time spent on re-work is worth it.
