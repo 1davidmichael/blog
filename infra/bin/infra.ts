@@ -1,14 +1,12 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
-import * as cdk from '@aws-cdk/core';
 import { InfraStack } from '../lib/infra-stack';
-import { Tag } from '@aws-cdk/core';
-
+import { App, Tags } from 'aws-cdk-lib';
 import { config } from "dotenv";
 
 config();
 
-const app = new cdk.App();
+const app = new App();
 const stack = new InfraStack(app, 'InfraStack', {
     stackName: 'DMBlog',
     env: {
@@ -18,4 +16,4 @@ const stack = new InfraStack(app, 'InfraStack', {
     }
 });
 
-Tag.add(stack, "Environment", "Prod");
+Tags.of(stack).add("Environment", "Prod");

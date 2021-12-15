@@ -1,21 +1,32 @@
-import * as cdk from '@aws-cdk/core';
-import * as s3 from '@aws-cdk/aws-s3';
-import * as cloudfront from '@aws-cdk/aws-cloudfront';
-import * as certmanager from '@aws-cdk/aws-certificatemanager';
-import * as route53 from '@aws-cdk/aws-route53';
-import * as targets from '@aws-cdk/aws-route53-targets';
+import {
+  Stack,
+  StackProps,
+  CfnParameter,
+  RemovalPolicy,
+  Duration,
+  CfnOutput
+} from 'aws-cdk-lib';
 
-export class InfraStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as certmanager from 'aws-cdk-lib/aws-certificatemanager';
+import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
+import * as route53 from 'aws-cdk-lib/aws-route53';
+import * as targets from 'aws-cdk-lib/aws-route53-targets';
+
+import { Construct } from 'constructs';
+
+
+export class InfraStack extends Stack {
+  constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    const uploadBuckeName = new cdk.CfnParameter(this, "BucketName", {
+    const uploadBuckeName = new CfnParameter(this, "BucketName", {
       type: "String",
       description: "The name of the bucket to be used",
       default: "david-michael-blog-bucket"
     });
 
-    const subdomain = new cdk.CfnParameter(this, "Subdomain", {
+    const subdomain = new CfnParameter(this, "Subdomain", {
       type: "String",
       description: "The name of the subdomain to be used",
       default: 'blog'
@@ -29,7 +40,7 @@ export class InfraStack extends cdk.Stack {
     const websiteBucket = new s3.Bucket(this, "static-website-bucket", {
       bucketName: uploadBuckeName.valueAsString,
       publicReadAccess: true,
-      removalPolicy: cdk.RemovalPolicy.DESTROY,
+      removalPolicy: RemovalPolicy.DESTROY,
       websiteIndexDocument: "index.html"
     });
 
@@ -50,16 +61,18 @@ export class InfraStack extends cdk.Stack {
           behaviors: [
             {
               isDefaultBehavior: true,
-              defaultTtl: cdk.Duration.minutes(5),
-              maxTtl: cdk.Duration.minutes(5)
+              defaultTtl: Duration.minutes(5),
+              maxTtl: Duration.minutes(5)
             }
           ]
         }
       ],
-      aliasConfiguration: {
-        acmCertRef: certificate.certificateArn,
-        names: [`${subdomain.valueAsString}.dmichael.be`]
-      },
+      viewerCertificate: cloudfront.ViewerCertificate.fromAcmCertificate(
+        certificate,
+        {
+          aliases: [`${subdomain.valueAsString}.dmichael.be`],
+        }
+      ),
       loggingConfig: {
         bucket: logBucket
       }
@@ -71,7 +84,7 @@ export class InfraStack extends cdk.Stack {
       target: route53.RecordTarget.fromAlias(new targets.CloudFrontTarget(cloudfrontDistribution))
     });
 
-    const output = new cdk.CfnOutput(this, "S3BucketOutput", {
+    const output = new CfnOutput(this, "S3BucketOutput", {
       value: websiteBucket.bucketName
     });
   }
