@@ -58,6 +58,14 @@ Finally, some deprecated resources have been removed with v2 and will need to be
 
 In my case this was able to be replaced with the [ViewerCertificate](https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-cloudfront.ViewerCertificate.html) resource. That example can be found [here](https://github.com/1davidmichael/blog/commit/dc6352d9cbe15bcad2649da257268f89c255f738#diff-4d30c26b8cfc1ca014c1890e2ca91336fbeb9b4194c1f56b2b6bb446be4c11b2)
 
+## CDK Bootstrap
+
+If you haven't recently done it, most AWS accounts in use may need to be re-bootstrapped. This is due to additional dependencies added to the CDK bootstrap stack deployed to AWS accounts. More details can be found [here](https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html#migrating-v2-trouble.title). Luckily the fix if you encounter errors with the older v1 bootstrap is easy. A quick command below takes care of it:
+
+```bash
+cdk boostrap --profile <account_profile>
+```
+
 ## Conclusion
 
 This is a relatively simple CDK application so the transition from CDK v1 to v2 was easy. I have done some more complex applications for my `$DAYJOB` and even more complex ones haven't been too difficult. Overall I think the move to a single repo for most resources will be well received.
