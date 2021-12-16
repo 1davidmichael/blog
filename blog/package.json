@@ -12,6 +12,7 @@
     "version": "5.4.0"
   },
   "dependencies": {
+    "constructs": "^10.0.12",
     "hexo": "^5.2.0",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-category": "^1.0.0",
