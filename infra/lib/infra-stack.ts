@@ -67,6 +67,7 @@ export class InfraStack extends Stack {
           ]
         }
       ],
+      httpVersion: cloudfront.HttpVersion.HTTP2_AND_3,
       viewerCertificate: cloudfront.ViewerCertificate.fromAcmCertificate(
         certificate,
         {
