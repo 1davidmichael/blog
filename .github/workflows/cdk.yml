@@ -30,7 +30,10 @@ jobs:
         env:
           CDK_DEPLOY_ACCOUNT: ${{ secrets.CDK_DEPLOY_ACCOUNT }}
       - name: Build Hexo Site
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
+          with:
+            node-version: 16
+            cache: 'npm'
 
       - run: cd blog && npm install
       - run: cd blog && npx hexo generate
