@@ -49,7 +49,7 @@ export class ExampleCustomResourceCdkStack extends cdk.Stack {
           domain: 'testdomain',
           repository: 'testrepository'
         },
-        physicalResourceId: customResource.PhysicalResourceId.of('testRepository') 
+        physicalResourceId: customResource.PhysicalResourceId.of('testRepository')
       },
       policy: customResource.AwsCustomResourcePolicy.fromSdkCalls({
         resources: AwsCustomResourcePolicy.ANY_RESOURCE
