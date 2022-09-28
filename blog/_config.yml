@@ -51,7 +51,12 @@ highlight:
   tab_replace: ''
   wrap: true
   hljs: false
-
+# prismjs:
+#   enable: true
+#   preprocess: true
+#   line_number: true
+#   line_threshold: 0
+#   tab_replace: ''
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
