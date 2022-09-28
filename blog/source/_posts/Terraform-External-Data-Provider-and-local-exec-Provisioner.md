@@ -75,7 +75,7 @@ To summarize it this is the flow:
 
 ## What If...
 
-So this works great, but what if we wanted to do a non-Python/Javascript lambda? And not mess with the complexity of the `package.py` file? It isn't too bad. Here are some snippets of an example using Dotnet, Bash and Terraform.
+So this works great, but what if we wanted to do a non-Python/Javascript lambda? And not mess with the complexity of the `package.py` file? It isn't too bad. Here are some snippets of an example using Dotnet, Bash and Terraform. The samples of the code below can be found in a GitHub repo here: <https://github.com/1davidmichael/terraform-aws-dotnet-lambda>
 
 First the terraform, we use an external data provider + bash script to see if the source directory contents has changed via a hash. Then we use a `null_resource` `local-exec` triggered off the `data.external.build_folder` to build the lambda zip.
 
