@@ -104,6 +104,7 @@ theme_config:
   projects_url: http://github.com/1davidmichael
   social_links:
     github: http://github.com/1davidmichael
+    mastodon: https://hachyderm.io/web/@d_michael
     twitter: https://twitter.com/d_michael
     mail: mailto:1.david.michael@gmail.com
   posts_overview:
