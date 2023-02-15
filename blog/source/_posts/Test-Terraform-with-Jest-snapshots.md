@@ -67,7 +67,7 @@ __tests__
 
 Now I can move resources around. In my example this is my original `main.tf` file:
 
-```hcl main.tf
+```json main.tf
 resource "null_resource" "resource1" {}
 resource "null_resource" "resource2" {}
 resource "null_resource" "resource3" {}
@@ -104,13 +104,13 @@ resource "aws_s3_bucket_public_access_block" "block_public_access" {
 
 Now I'll move my S3 resources to a separate file called `s3.tf`:
 
-```hcl main.tf
+```json main.tf
 resource "null_resource" "resource1" {}
 resource "null_resource" "resource2" {}
 resource "null_resource" "resource3" {}
 ```
 
-```hcl s3.tf
+```json s3.tf
 resource "aws_s3_bucket" "test_bucket" {}
 
 resource "aws_s3_bucket_versioning" "versioning" {
