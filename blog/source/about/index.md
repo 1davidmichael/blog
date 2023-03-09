@@ -1,6 +1,6 @@
 ---
 title: Who Am I?
-date: 2020-07-09 15:12:53
+date: 2023-03-09 15:12:53
 tags:
 ---
 
@@ -14,9 +14,8 @@ I am an open source advocate and enjoy using open source software to build all m
 
 ## Experience
 
-I spent 10 years working at my previous job doing various System and Cloud Administrator tasks. I also led a team in migrating complex web hosting services to AWS. I have multiple AWS certs, including the AWS Certified Solutions Architect Pro.
+I spent 13 years working at my previous jobs doing various Cloud Engineering and DevOps tasks. I also led teams in migrating complex web hosting services to AWS. I have multiple AWS certs, including the AWS Certified Solutions Architect Pro. I'm very familiar with Terraform. CloudFormation and CDK. I prefer to use IaC for repeatable, immutable cloud infrastructure.
 
-I've since moved on to a new role at an insurance provider and am working on fostering a DevOps culture and providing useful services for other development teams.
 
 If you'd like to get in contact with me see my personal contact info on the home page.
 
