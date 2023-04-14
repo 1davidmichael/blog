@@ -34,6 +34,9 @@ vim /etc/ssh/sshd_config
 
 # Then restart SSH
 sudo systemctl restart sshd
+
+# Get the IP for ssh
+ip a
 ```
 
 ## Run Replication Executable over SSH
@@ -41,6 +44,7 @@ sudo systemctl restart sshd
 Now that SSH is enabled you can run the replication executable over SSH to setup the failback process:
 
 ```bash
+ssh ${IP_ADDRESS}
 sudo ./failback_entry
 ```
 
