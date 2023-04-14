@@ -2,9 +2,7 @@
 import 'source-map-support/register';
 import { InfraStack } from '../lib/infra-stack';
 import { App, Tags } from 'aws-cdk-lib';
-import { config } from "dotenv";
 
-config();
 
 const app = new App();
 const stack = new InfraStack(app, 'InfraStack', {
