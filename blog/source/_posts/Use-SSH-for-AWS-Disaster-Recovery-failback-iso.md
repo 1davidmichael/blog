@@ -49,5 +49,8 @@ Now it should prompt you for your region, access and secret key and you can past
 One thing to note is that the `failback_entry` executable supports multiple flags, so you can pass in region, secret and access key via the CLI as well.
 
 ```bash
-sudo ./failback_entry --region us-east-1 --aws-access-key-id AKIA... --aws-secret-access-key ${SECRET_KEY}
+sudo ./failback_entry \
+  --region us-east-1 \
+  --aws-access-key-id AKIA... \
+  --aws-secret-access-key ${SECRET_KEY}
 ```
