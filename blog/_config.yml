@@ -103,11 +103,12 @@ theme: cactus
 theme_config:
   projects_url: http://github.com/1davidmichael
   social_links:
-    github: http://github.com/1davidmichael
-    mastodon: https://hachyderm.io/web/@d_michael
-    threads: https://www.threads.net/@1.david.michael
-    bluesky: https://bsky.app/profile/dmichael.be
-    mail: mailto:1.david.michael@gmail.com
+  - icon: github
+    link: http://github.com/1davidmichael
+  - icon: mastodon
+    link: https://hachyderm.io/web/@d_michael
+  - icon: mail
+    link: mailto:1.david.michael@gmail.com
   posts_overview:
     show_all_posts: true
   copyright:
@@ -138,6 +139,9 @@ theme_config:
   google_analytics:
     enabled: true
     id: UA-173473397-1
+  gtm:
+    enabled: true
+    id: GTM-5T97J87K
 
 
 # Deployment
